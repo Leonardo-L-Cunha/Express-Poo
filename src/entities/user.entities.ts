@@ -6,10 +6,10 @@ export class User {
   secondName: string;
   email: string;
   password: string;
-  readonly createdAt: number;
+  readonly createdAt: Date;
 
   constructor() {
     this.id = randomUUID();
-    this.createdAt = Date.now();
+    this.createdAt = new Date();
   }
 }

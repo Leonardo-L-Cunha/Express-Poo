@@ -1,8 +1,13 @@
 import { Router } from 'express';
-import { userController } from '../controllers/user.controller';
+import { container } from 'tsyringe';
+import '../container';
+
+import { UserController } from '../controllers/user.controller';
+
+const userController = container.resolve(UserController);
 
 const userRouter: Router = Router();
 
-userRouter.post('', userController.create);
+userRouter.post('', userController.create.bind(userController));
 
 export default userRouter;

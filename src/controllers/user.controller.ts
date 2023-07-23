@@ -1,9 +1,18 @@
 import { Request, Response } from 'express';
+import { injectable } from 'tsyringe';
 
-class UserController {
+import { UserDto } from '../interface/user.inteface';
+import { UserService } from '../service/user.service';
+
+@injectable()
+export class UserController {
+  constructor(private userService: UserService) {}
+
   async create(req: Request, res: Response) {
-    return res.status(201).json('tudo certo');
+    const data: UserDto = req.body;
+
+    const newUser = await this.userService.createUser(data);
+
+    return res.status(201).json(newUser);
   }
 }
-
-export const userController = new UserController();
