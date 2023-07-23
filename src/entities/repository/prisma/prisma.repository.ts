@@ -20,7 +20,9 @@ export class PrismaRepository implements UserRepository {
     });
     return newUser;
   }
-  listAll(): Promise<User[]> {
-    throw new Error('Method not implemented.');
+  async listAll(): Promise<User[]> {
+    const users: User[] = await prisma.user.findMany();
+
+    return users;
   }
 }

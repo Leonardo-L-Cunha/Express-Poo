@@ -15,4 +15,10 @@ export class UserController {
 
     return res.status(201).json(newUser);
   }
+
+  async list(req: Request, res: Response) {
+    const users = await this.userService.listUsers();
+
+    return res.status(200).json(users);
+  }
 }
