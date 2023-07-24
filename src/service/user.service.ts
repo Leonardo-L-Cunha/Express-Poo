@@ -1,4 +1,3 @@
-import { PrismaRepository } from '../entities/repository/prisma/prisma.repository';
 import { UserRepository } from '../entities/repository/user.repository';
 import { UserDto, UserReturn } from '../interface/user.inteface';
 import { injectable, inject } from 'tsyringe';
@@ -11,9 +10,7 @@ export class UserService {
   async createUser(data: UserDto): Promise<UserReturn> {
     const user = await this.userRepository.create(data);
 
-    const userParse = UserSchemaReturn.parse(user);
-
-    return userParse;
+    return user;
   }
 
   async listUsers(): Promise<UserReturn[]> {
